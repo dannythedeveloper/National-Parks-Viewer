@@ -45,6 +45,7 @@ function getParks(searchInput, maxInput) {
         .then(responseJson => displayParkResults(responseJson))
         .catch(error => {
             $('#error-message').text(`Something went wrong: ${error.message}`);
+
         });
 
 }
