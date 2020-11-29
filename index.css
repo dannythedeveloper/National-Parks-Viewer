@@ -1,0 +1,27 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 50px;
+}
+
+ul {
+    text-align: left;
+    list-style: none;
+    margin: 0 50px; 
+}
+
+a:link {
+    color: green;
+}
+
+a:hover {
+    color: purple;
+}
