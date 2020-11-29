@@ -2,7 +2,7 @@ const apiKey = 'sVOjySmT6L6F1ZtireEMFmMhvbNOs6HBh5xu9lMy';
 const baseUrl = 'https://developer.nps.gov/api/v1/parks';
 
 function displayParkResults(responseJson) {
-    console.log(responseJson);
+    $('#errorMessage').empty();
     $('#searchList').empty();
     for (let i = 0; i < responseJson.data.length; i++) {
         let parkAddress = `${responseJson.data[i].addresses[0].line1} ${responseJson.data[i].addresses[0].city}, ${responseJson.data[i].addresses[0].stateCode} ${responseJson.data[i].addresses[0].postalCode}`
@@ -36,8 +36,16 @@ function getParks(searchInput, maxInput) {
             headers: {
                 'Content-Type': 'application/json'
             },
-        }).then(response => response.json())
+        }).then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error (response.statusText);
+        })
         .then(responseJson => displayParkResults(responseJson))
+        .catch(error => {
+            $('#error-message').text(`Something went wrong: ${error.message}`);
+        });
 
 }
 
